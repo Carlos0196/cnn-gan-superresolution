@@ -14,6 +14,9 @@ ZOOM_FOR_LR_SQUARE = [50, 66, 33, 50]
 ZOOM_FOR_HR = [250, 325, 100, 175]
 ZOOM_FOR_HR_SQUARE = [150, 200, 100, 150]
 
+# Dataframe constants
+DF_COLUMNS = ['BIC_MSE', 'GEN_MSE', 'BIC_SSIM', 'GEN_SSIM', 'BIC_PSNR', 'GEN_PSNR']
+
 # Model constants
 # Model only upscales to a factor of 3
 # do not change unless you also change the generator

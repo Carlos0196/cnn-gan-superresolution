@@ -1,4 +1,4 @@
-from constants import *
+from constants import SEED, BATCH_SIZE, HR_IMG_SIZE, LR_IMG_SIZE, UPSCALE_FACTOR
 
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image_dataset_from_directory
