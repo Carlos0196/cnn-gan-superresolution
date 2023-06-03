@@ -1,4 +1,4 @@
-from constants import SEED, BATCH_SIZE, HR_IMG_SIZE, LR_IMG_SIZE, UPSCALE_FACTOR
+from constants import SEED, HR_IMG_SIZE, LR_IMG_SIZE, UPSCALE_FACTOR
 
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image_dataset_from_directory
@@ -10,25 +10,25 @@ def resize_img(img, size):
     return tf.image.resize(img, [size, size], method="area")
 
 
-def get_data_sets():
+def get_data_sets(batch_size):
     # Get images
     train_ds = image_dataset_from_directory(
         './train',
-        batch_size=BATCH_SIZE,
+        batch_size=batch_size,
         image_size=(HR_IMG_SIZE, HR_IMG_SIZE),
         seed=SEED,
         label_mode=None,
     )
     valid_ds = image_dataset_from_directory(
         './val',
-        batch_size=BATCH_SIZE,
+        batch_size=batch_size,
         image_size=(HR_IMG_SIZE, HR_IMG_SIZE),
         seed=SEED,
         label_mode=None,
     )
     test_ds = image_dataset_from_directory(
         './test',
-        batch_size=BATCH_SIZE,
+        batch_size=batch_size,
         image_size=(HR_IMG_SIZE, HR_IMG_SIZE),
         seed=SEED,
         label_mode=None,

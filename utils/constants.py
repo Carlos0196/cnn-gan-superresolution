@@ -5,20 +5,15 @@
 # Training constants
 HR_IMG_SIZE = 300
 LR_IMG_SIZE = 100
-BATCH_SIZE = 8
 SEED = 42
 
 # Visualization constants
-ZOOM_FOR_LR = [83, 108, 33, 58]
-ZOOM_FOR_LR_SQUARE = [50, 66, 33, 50]
-ZOOM_FOR_HR = [250, 325, 100, 175]
-ZOOM_FOR_HR_SQUARE = [150, 200, 100, 150]
 SAMPLE_IMAGES_VAL = [
-    'val/108070.jpg',
-    'val/299086.jpg',
-    'val/210088.jpg',
-    'val/41069.jpg',
-    'val/86000.jpg'
+    ['val/108070.jpg', [250, 325, 100, 175]],
+    ['val/299086.jpg', [320, 395, 200, 275]],
+    ['val/41069.jpg', [225, 300, 150, 225]],
+    ['val/210088.jpg', [150, 225, 200, 275]],
+    ['val/86000.jpg', [150, 225, 200, 275]]
 ]
 
 # Dataframe constants

@@ -1,4 +1,4 @@
-from constants import SAMPLE_IMAGES_VAL, ZOOM_FOR_HR
+from constants import SAMPLE_IMAGES_VAL
 from data_preprocessing import downscale, upscale
 
 import numpy as np
@@ -97,15 +97,15 @@ def epoch_statistics(epoch, df_train_epoch, df_valid_epoch, time):
 
 def show_sample_images(epoch, model, path_to_save_results):
     i = 1
-    for img_path in SAMPLE_IMAGES_VAL:
-        hr_img = load_img(img_path)
+    for img in SAMPLE_IMAGES_VAL:
+        hr_img = load_img(img[0])
         lr_img = downscale(hr_img)
 
         # High resolution image
         plot_results(
             hr_img,
             'High resolution image',
-            ZOOM_FOR_HR,
+            img[1],
             path_to_save_results,
             f'Epoch_{epoch}_HR_{i}'
         )
@@ -115,7 +115,7 @@ def show_sample_images(epoch, model, path_to_save_results):
         plot_results(
             bic_img,
             'Upsample by Bicubic interpolation',
-            ZOOM_FOR_HR,
+            img[1],
             path_to_save_results,
             f'Epoch_{epoch}_BIC_{i}'
         )
@@ -125,7 +125,7 @@ def show_sample_images(epoch, model, path_to_save_results):
         plot_results(
             gen_img,
             'Upsample by model',
-            ZOOM_FOR_HR,
+            img[1],
             path_to_save_results,
             f'Epoch_{epoch}_GEN_{i}'
         )
