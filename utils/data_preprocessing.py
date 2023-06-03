@@ -3,6 +3,8 @@ from constants import *
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 
+import PIL
+
 def resize_img(img, size):
     return tf.image.resize(img, [size, size], method="area")
 
@@ -24,8 +26,8 @@ def get_data_sets():
   )
   test_ds = image_dataset_from_directory(
       './test',
-      batch_size=HR_IMG_SIZE,
-      image_size=(BATCH_SIZE, HR_IMG_SIZE),
+      batch_size=BATCH_SIZE,
+      image_size=(HR_IMG_SIZE, HR_IMG_SIZE),
       seed=SEED,
       label_mode=None,
   )
@@ -52,3 +54,17 @@ def get_data_sets():
   test_ds = test_ds.prefetch(buffer_size=32)
 
   return train_ds, valid_ds, test_ds
+
+def downscale(img):
+  h = img.size[0] // UPSCALE_FACTOR
+  w = img.size[1] // UPSCALE_FACTOR
+  resample = PIL.Image.BICUBIC
+
+  return img.resize((h, w), resample)
+
+def upscale(img):
+  h = img.size[0] * UPSCALE_FACTOR
+  w = img.size[1] * UPSCALE_FACTOR
+  resample = PIL.Image.BICUBIC
+
+  return img.resize((h, w), resample)
