@@ -8,7 +8,7 @@ def make_generator_model():
     model.add(layers.Input((None, None, 3)))
 
     model.add(
-        layers.Conv2DTranspose(256, (5, 5), strides=(1, 1), padding='same'))
+        layers.Conv2DTranspose(256, (3, 3), strides=(1, 1), padding='same'))
     model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU())
 
