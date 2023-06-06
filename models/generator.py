@@ -21,6 +21,11 @@ def make_generator_model():
     model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU())
 
+    model.add(
+        layers.Conv2DTranspose(32, (3, 3), strides=(1, 1), padding='same'))
+    model.add(layers.BatchNormalization())
+    model.add(layers.LeakyReLU())
+
     model.add(layers.Conv2DTranspose(3, (3, 3), strides=(1, 1), padding='same'))
 
     return model
