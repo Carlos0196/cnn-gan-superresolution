@@ -15,8 +15,7 @@ def calc_metrics(model, lr_img, hr_img):
     bic_img = upscale(lr_img)
 
     # Generated image
-    # Prepare image
-    img = img_to_array(lr_img)
+    img = img_to_array(lr_img).astype("float32")
 
     # Redimension (1, height, width, channels)
     img = np.expand_dims(img, axis=0)
