@@ -4,6 +4,8 @@ from visualization import process_through_model
 
 import pandas as pd
 
+import numpy as np
+
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import array_to_img, img_to_array
 
@@ -13,7 +15,20 @@ def calc_metrics(model, lr_img, hr_img):
     bic_img = upscale(lr_img)
 
     # Generated image
-    gen_img = process_through_model(model, lr_img)
+    # Prepare image
+    img = img_to_array(lr_img)
+
+    # Redimension (1, height, width, channels)
+    img = np.expand_dims(img, axis=0)
+
+    # Process through model
+    output = model(img, training=False)
+
+    # Redimension (height, width, channels)
+    output = tf.squeeze(output)
+
+    # Return image
+    gen_img = array_to_img(output)
 
     # Ensure equal size
     h = gen_img.size[0]
@@ -42,14 +57,12 @@ def calc_metrics(model, lr_img, hr_img):
 
     return [bic_mse, gen_mse, bic_ssim, gen_ssim, bic_psnr, gen_psnr]
 
-
 def create_epoch_dataframe(epoch_name, columns, data):
     # Create dataframe
     items = [epoch_name]
     cols = pd.MultiIndex.from_product([items, columns])
 
     return pd.DataFrame(data, columns=cols)
-
 
 def calc_batch_metrics(model, batch):
     batch_data = []
@@ -70,9 +83,7 @@ def calc_batch_metrics_disc(generator, discriminator, batch):
         hr_img = array_to_img(batch[1][i])
 
         # Generate images
-        lr_img /= 255.0
         output = generator(lr_img, training=False)
-        output *= 255.0
 
         # Send images to discriminator
         real_output = discriminator(hr_img, training=False)
