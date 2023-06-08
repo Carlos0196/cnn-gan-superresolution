@@ -63,7 +63,7 @@ def calc_batch_metrics(model, batch):
         batch_data.append(metrics)
     return batch_data
 
-def calc_batch_metrics(generator, discriminator, batch):
+def calc_batch_metrics_disc(generator, discriminator, batch):
     batch_data = []
     for i in range(len(batch[0])):
         lr_img = array_to_img(batch[0][i])
