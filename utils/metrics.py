@@ -78,8 +78,8 @@ def calc_batch_metrics(model, batch):
 def calc_batch_metrics_disc(generator, discriminator, batch):
     batch_data = []
     for i in range(len(batch[0])):
-        lr_img = batch[0][i]
-        hr_img = batch[1][i]
+        lr_img = np.expand_dims(batch[0][i], axis=0)
+        hr_img = np.expand_dims(batch[1][i], axis=0)
 
         # Generate images
         output = generator(lr_img, training=False)
