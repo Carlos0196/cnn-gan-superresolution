@@ -9,15 +9,15 @@ def make_discriminator_model():
 
     model.add(layers.Input((HR_IMG_SIZE, HR_IMG_SIZE, 3)))
 
-    model.add(layers.Conv2D(128, (3, 3), strides=(1, 1)))
+    model.add(layers.Conv2D(512, (3, 3), strides=(1, 1)))
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
 
-    model.add(layers.Conv2D(64, (3, 3), strides=(2, 2)))
+    model.add(layers.Conv2D(256, (3, 3), strides=(2, 2)))
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
 
-    model.add(layers.Conv2D(32, (3, 3), strides=(2, 2)))
+    model.add(layers.Conv2D(128, (3, 3), strides=(2, 2)))
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
 
