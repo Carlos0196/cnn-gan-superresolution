@@ -43,10 +43,10 @@ def calc_metrics(model, lr_img, hr_img):
     return [bic_mse, gen_mse, bic_ssim, gen_ssim, bic_psnr, gen_psnr]
 
 
-def create_epoch_dataframe(epoch_name, data):
+def create_epoch_dataframe(epoch_name, columns, data):
     # Create dataframe
     items = [epoch_name]
-    cols = pd.MultiIndex.from_product([items, DF_COLUMNS])
+    cols = pd.MultiIndex.from_product([items, columns])
 
     return pd.DataFrame(data, columns=cols)
 
@@ -61,4 +61,22 @@ def calc_batch_metrics(model, batch):
         metrics = calc_metrics(model, lr_img, hr_img)
 
         batch_data.append(metrics)
+    return batch_data
+
+def calc_batch_metrics(generator, discriminator, batch):
+    batch_data = []
+    for i in range(len(batch[0])):
+        lr_img = array_to_img(batch[0][i])
+        hr_img = array_to_img(batch[1][i])
+
+        # Generate images
+        lr_img /= 255.0
+        output = generator(lr_img, training=False)
+        output *= 255.0
+
+        # Send images to discriminator
+        real_output = discriminator(hr_img, training=False)
+        fake_output = discriminator(output, training=False)
+
+        batch_data.append([real_output, fake_output])
     return batch_data

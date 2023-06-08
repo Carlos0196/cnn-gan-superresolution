@@ -25,6 +25,10 @@ DF_COLUMNS = [
     'BIC_PSNR',
     'GEN_PSNR'
 ]
+DF_COLUMNS_DISCRIMINATOR = [
+    'PREDICTIONS_FOR_REAL',
+    'PREDICTIONS_FOR_FAKE'
+]
 
 # Model constants
 # Model only upscales to a factor of 3
