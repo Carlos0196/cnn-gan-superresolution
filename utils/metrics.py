@@ -85,8 +85,8 @@ def calc_batch_metrics_disc(generator, discriminator, batch):
         output = generator(lr_img, training=False)
 
         # Send images to discriminator
-        real_output = discriminator(hr_img, training=False)
-        fake_output = discriminator(output, training=False)
+        real_output = discriminator(hr_img, training=False).numpy()
+        fake_output = discriminator(output, training=False).numpy()
 
         batch_data.append([real_output, fake_output])
     return batch_data
