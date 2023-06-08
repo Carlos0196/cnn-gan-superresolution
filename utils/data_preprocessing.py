@@ -35,9 +35,9 @@ def get_data_sets(batch_size):
     )
 
     # Scale from (0, 255) to (0, 1)
-    #train_ds = train_ds.map(lambda x: x / 255.0)
-    #valid_ds = valid_ds.map(lambda x: x / 255.0)
-    #test_ds = test_ds.map(lambda x: x / 255.0)
+    train_ds = train_ds.map(lambda x: x / 255.0)
+    valid_ds = valid_ds.map(lambda x: x / 255.0)
+    test_ds = test_ds.map(lambda x: x / 255.0)
 
     # Create (high_resolution_image, low_resolution_image) pair
     train_ds = train_ds.map(
