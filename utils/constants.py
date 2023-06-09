@@ -29,6 +29,10 @@ DF_COLUMNS_DISCRIMINATOR = [
     'PREDICTIONS_FOR_REAL',
     'PREDICTIONS_FOR_FAKE'
 ]
+DF_COLUMNS_LOSS = [
+    'GENERATOR_LOSS',
+    'DISCRIMINATOR_LOSS'
+]
 
 # Model constants
 # Model only upscales to a factor of 3
