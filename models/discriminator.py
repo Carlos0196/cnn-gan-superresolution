@@ -18,6 +18,6 @@ def make_discriminator_model():
     model.add(layers.Dropout(0.3))
 
     model.add(layers.Flatten())
-    model.add(layers.Dense(1, activation='sigmoid'))
+    model.add(layers.Dense(1))
 
     return model
