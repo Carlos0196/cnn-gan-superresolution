@@ -17,6 +17,10 @@ def make_discriminator_model():
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
 
+    model.add(layers.Conv2D(32, (3, 3), strides=(2, 2)))
+    model.add(layers.LeakyReLU())
+    model.add(layers.Dropout(0.3))
+
     model.add(layers.Flatten())
     model.add(layers.Dense(1))
 
